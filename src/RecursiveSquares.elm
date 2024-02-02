@@ -1,11 +1,31 @@
 module RecursiveSquares exposing (..)
 
 import GraphicSVG exposing (..)
+import GraphicSVG.App exposing (..)
 
-myShapes model =
+-- Lifecycle
+type Msg
+    = Tick Float GetKeyState
+
+type alias Model = { angle : Float, speed : Float }
+
+-- Update function is set to take in msg and model parameters so that gameApp can call it
+update msg model =
+    case msg of
+        _ -> model
+
+view model =
   [
     myFunction 5
   ]
+
+main =
+    gameApp Tick
+        { model = init
+        , update = update
+        , view = view
+        }
+-- Lifecycle Ends
 
 myFunction n = 
   if n <= 1 then
